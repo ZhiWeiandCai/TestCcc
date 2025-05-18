@@ -1,0 +1,13 @@
+# 排除编译输出
+target/
+bin/
+out/
+
+# 排除 IDE 配置
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# 排除日志文件
+*.log
