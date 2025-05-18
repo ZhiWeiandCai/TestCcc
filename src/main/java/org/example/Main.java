@@ -15,7 +15,8 @@ public class Main {
 
         // 检查是否支持系统托盘
         if (!SystemTray.isSupported()) {
-            JOptionPane.showMessageDialog(null, "系统不支持托盘图标", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    "System tray is not supported", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -32,23 +33,23 @@ public class Main {
         PopupMenu menu = new PopupMenu();
 
         // 菜单项1：获取服务状态
-        MenuItem statusItem = new MenuItem("获取状态");
+        MenuItem statusItem = new MenuItem("get the server status");
         statusItem.addActionListener(e -> {
             //String response = sendRequestToServer("{\"action\": \"get_status\"}");
             String response = "statusItem action";
-            showMessage("服务状态", response);
+            showMessage("server status", response);
         });
 
         // 菜单项2：重启服务
-        MenuItem restartItem = new MenuItem("重启服务");
+        MenuItem restartItem = new MenuItem("second item service");
         restartItem.addActionListener(e -> {
             //String response = sendRequestToServer("{\"action\": \"restart\"}");
-            String response = "restartItem action";
-            showMessage("操作结果", response);
+            String response = "secondItem action";
+            showMessage("operating", response);
         });
 
         // 菜单项3：退出
-        MenuItem exitItem = new MenuItem("退出");
+        MenuItem exitItem = new MenuItem("exit");
         exitItem.addActionListener(e -> {
             System.exit(0);
         });
@@ -60,18 +61,19 @@ public class Main {
         menu.add(exitItem);
 
         // 创建托盘图标
-        TrayIcon trayIcon = new TrayIcon(image, "服务控制面板", menu);
+        TrayIcon trayIcon = new TrayIcon(image, "Service Panel", menu);
         trayIcon.setImageAutoSize(true);
 
         // 双击图标事件
         trayIcon.addActionListener(e -> {
-            showMessage("服务信息", "双击托盘图标可快速查看状态");
+            showMessage("Service info", "Double click the tray icon to quickly view the status");
         });
 
         try {
             tray.add(trayIcon);
         } catch (AWTException e) {
-            JOptionPane.showMessageDialog(null, "无法添加托盘图标", "错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Unable to add tray icon", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }
 
